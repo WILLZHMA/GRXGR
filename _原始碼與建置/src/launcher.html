@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10382b">
+<title>GRGR 綠綠｜入口</title>
+<link rel="icon" href="__ICON__">
+<style>
+ :root{--hero:#10382b;--olive:#385723;--lime:#b5f6bf;--ink:#1d302b;--muted:#4f5f58;--card:#164c39;--paper:#f5f7f3;--line:#e0e7e2;--up:#a8483c;--down:#25664a}
+ *{box-sizing:border-box}
+ html,body{margin:0}
+ body{background:var(--olive);color:var(--ink);font:15px/1.6 Inter,"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+ .hero{margin:6px 6px 0;padding:12px 24px 12px;background:var(--hero);border-radius:22px;text-align:center;color:#fff}
+ .hero h1{margin:0;line-height:1.2}
+ .hero .g{display:block;font-size:1.75rem;font-weight:800;letter-spacing:.07em;color:var(--lime)}
+ .hero .zh{display:block;margin-top:2px;font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:.12em}
+ .hero .en{margin:2px 0 0;font-size:.92rem;letter-spacing:.03em;color:#cfe0d5}
+ .hero hr{height:0;border:0;border-top:1px solid #365c4c;margin:8px 6px 8px}
+ .hero .slogan{margin:0;font-size:1.02rem;font-weight:600;letter-spacing:.08em;color:#f1f7f3}
+ .stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 232px;gap:6px;padding:6px}
+ .pane{display:flex;flex-direction:column;min-height:0;background:#fff;border-radius:18px;overflow:hidden}
+ .pane-hd{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:10px 16px 8px;border-bottom:1px solid var(--line)}
+ .tabs{display:flex;gap:4px;flex-wrap:wrap}
+ [role=tab]{min-height:44px;padding:0 16px;border:0;border-bottom:3px solid transparent;border-radius:10px 10px 0 0;background:transparent;color:#3f5249;font:inherit;font-size:.95rem;font-weight:700;cursor:pointer}
+ [role=tab]:hover{background:#eef5ef}
+ [role=tab][aria-selected=true]{background:#dcece2;color:var(--card);border-bottom-color:var(--card)}
+ .sim{margin-left:auto;padding:1px 10px;border:1px dashed #6b7b73;border-radius:99px;font-size:.76rem;font-weight:700;color:#3d4d46;white-space:nowrap}
+ .panel{flex:1;min-height:0;display:flex;flex-direction:column}
+ .panel[hidden]{display:none}
+ .bar{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;padding:10px 20px 6px;font-size:.88rem;color:var(--muted)}
+ .bar .sp{margin-left:auto}
+ .bar-r{margin-left:auto;display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
+ .btn,select{min-height:44px;border:1px solid #cdd8d1;border-radius:11px;background:#fff;color:#3f5249;font:inherit;font-size:.88rem;font-weight:700}
+ .btn{padding:0 16px;cursor:pointer}
+ .btn:hover{background:#f3f7f3}
+ select{padding:0 10px;min-width:120px}
+ label.sel{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink)}
+ .ticker{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin;padding:0 20px;-webkit-mask-image:linear-gradient(transparent,#000 22px,#000 calc(100% - 22px),transparent);mask-image:linear-gradient(transparent,#000 22px,#000 calc(100% - 22px),transparent)}
+ .ticker.manual{-webkit-mask-image:none;mask-image:none}
+ .news{list-style:none;margin:0;padding:0}
+ .news li{padding:14px 0;border-bottom:1px solid #e6ece7}
+ .news .meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:.76rem;color:var(--muted)}
+ .news .ty{padding:1px 10px;border-radius:99px;background:#dcece2;color:#164c39;font-weight:800}
+ .news h3{margin:4px 0 2px;font-size:1.02rem;line-height:1.45}
+ .news p{margin:0;font-size:.88rem;color:#4a5a53}
+ .wrap{flex:1;min-height:0;overflow:auto;padding:0 20px 14px}
+ .note{margin:0 20px 8px;padding:8px 12px;border-radius:11px;background:#f6eed9;color:#5b4310;font-size:.86rem}
+ table{width:100%;border-collapse:separate;border-spacing:0;font-size:.95rem}
+ caption{text-align:left;padding:2px 0 8px;font-size:.82rem;color:var(--muted)}
+ th,td{padding:9px 10px;text-align:right;border-bottom:1px solid #e6ece7;font-variant-numeric:tabular-nums}
+ th:first-child,td:first-child,th.l,td.l{text-align:left}
+ thead th{position:sticky;top:0;background:var(--card);color:#fff;font-weight:800;border-bottom:0;z-index:1}
+ thead th:first-child{border-top-left-radius:10px}
+ thead th:last-child{border-top-right-radius:10px}
+ tbody tr:nth-child(even) td,tbody tr:nth-child(even) th{background:#f5f8f4}
+ tbody th{font-weight:800;color:var(--card);background:#fff}
+ td.k{font-weight:800}
+ .sub{display:block;font-size:.76rem;font-weight:700;color:var(--muted)}
+ .up{color:var(--up)}.down{color:var(--down)}
+ .sum{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#eef5ef;font-size:.92rem}
+ .sum b{display:block;margin-bottom:4px;color:var(--card)}
+ .sum p{margin:0 0 4px}
+ .pane-ft{margin:0;padding:10px 20px 14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+ .side{background:var(--paper);border-radius:18px;padding:12px 12px 4px;overflow:auto}
+ .side h2{margin:4px 6px 8px;font-size:.95rem}
+ .side h2:not(:first-child){margin-top:10px}
+ a.card{display:flex;flex-direction:column;justify-content:center;gap:1px;min-height:56px;margin-bottom:8px;padding:8px 16px;line-height:1.4;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 16px rgba(24,48,36,.08);color:var(--card);text-decoration:none}
+ a.card b{font-size:.98rem}
+ a.card small{font-size:.78rem;font-weight:700;color:var(--muted)}
+ a.card:hover{background:#eef5ef;border-color:#9fc4ae}
+ a:focus-visible,button:focus-visible,select:focus-visible,.ticker:focus-visible,.wrap:focus-visible{outline:3px solid #1b5fd0;outline-offset:2px}
+ @media (min-width:761px){body{height:100vh}}
+ @media (max-width:760px){
+  .stage{grid-template-columns:1fr}
+  .side{order:-1;display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;padding-bottom:12px}
+  .side nav{display:contents}
+  .side h2{grid-column:1/-1}
+  a.card{margin-bottom:0}
+  .pane{min-height:430px}
+  .ticker,.wrap{height:340px;flex:none}
+  .tabs{width:100%}
+  [role=tab]{flex:1;padding:0 6px}
+  .sim{margin-left:0}
+  .hero .g{font-size:1.5rem}
+  .bar{padding:10px 14px 6px}
+  .ticker,.wrap{padding-left:14px;padding-right:14px}
+  .note{margin:0 14px 8px}
+  th,td{padding:8px 6px}
+  th:first-child{white-space:nowrap}
+  .bar .sp{margin-left:0}
+  .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+ }
+ @media (prefers-reduced-motion:reduce){#tkbtn{display:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+ <h1><span class="g">GRGR</span><span class="zh">綠綠</span></h1>
+ <p class="en">Green Green · Green &amp; Growth</p>
+ <hr>
+ <p class="slogan">看見農業，洞察變化，創造成長。</p>
+</header>
+<div class="stage">
+ <main class="pane" aria-label="農業資訊">
+  <div class="pane-hd">
+   <div class="tabs" role="tablist" aria-label="資訊分頁">
+    <button type="button" role="tab" id="t-news" aria-controls="p-news" aria-selected="true">新聞</button>
+    <button type="button" role="tab" id="t-quote" aria-controls="p-quote" aria-selected="false" tabindex="-1">上中下價</button>
+    <button type="button" role="tab" id="t-stat" aria-controls="p-stat" aria-selected="false" tabindex="-1">整體統計</button>
+   </div>
+   <span class="sim">示範資料</span>
+  </div>
+
+  <section class="panel" id="p-news" role="tabpanel" aria-labelledby="t-news">
+   <div class="bar"><span id="ncount" role="status">最新農業新聞</span><div class="bar-r"><label class="sel"><span>主題</span><select id="ntopic" aria-label="新聞主題" aria-controls="news"></select></label><button type="button" class="btn" id="tkbtn">暫停捲動</button></div></div>
+   <div class="ticker" id="ticker" tabindex="0" role="region" aria-label="新聞列表（會自動向上捲動，可按暫停鍵停止，也可以用滑鼠或鍵盤自己捲動）">
+    <ol class="news" id="news"></ol>
+   </div>
+  </section>
+
+  <section class="panel" id="p-quote" role="tabpanel" aria-labelledby="t-quote" hidden>
+   <div class="bar"><label class="sel"><span>市場</span><select id="mk" aria-label="選擇市場"></select></label><span class="sp" id="qdate"></span></div>
+   <p class="note" id="qnote" hidden></p>
+   <div class="wrap" id="qwrap" tabindex="0" role="region" aria-label="各品名上中下價表格，可捲動">
+    <table id="qtbl"><caption>各品名、品種的上價、中價、下價（單位：元／公斤）</caption>
+     <thead><tr><th scope="col">品名</th><th scope="col" class="l">品種</th><th scope="col">上價</th><th scope="col">中價</th><th scope="col">下價</th></tr></thead>
+     <tbody id="qbody"></tbody></table>
+   </div>
+  </section>
+
+  <section class="panel" id="p-stat" role="tabpanel" aria-labelledby="t-stat" hidden>
+   <div class="bar"><span id="sdate"></span><span class="sp">單位：交易量＝公噸；平均價＝元／公斤</span></div>
+   <div class="wrap" id="swrap" tabindex="0" role="region" aria-label="整體統計，可捲動">
+    <table id="stbl"><caption>全部示範市場合計，依品類統計（平均價依交易量加權；▲▼ 為較昨日的變動）</caption>
+     <thead><tr><th scope="col">統計項目</th><th scope="col">葉菜類</th><th scope="col">辛香根莖</th><th scope="col">雜糧與筍</th></tr></thead>
+     <tbody id="sbody"></tbody></table>
+    <div class="sum" id="ssum"></div>
+   </div>
+  </section>
+
+  <p class="pane-ft">新聞與數字都是示範資料（由程式依日期產生，內容與來源皆為示意），不是真實新聞或行情；正式版會接政府與農業單位的公開資訊，並標示來源與更新時間。</p>
+ </main>
+ <aside class="side" aria-label="選擇版本">
+  <nav>
+   <h2>手機版</h2>
+   <a class="card" href="手機版_農友/index.html"><b>農友</b><small>今天賣哪裡</small></a>
+   <a class="card" href="手機版_消費者/index.html"><b>消費者</b><small>這週買什麼</small></a>
+   <a class="card" href="手機版_政策者/index.html"><b>政策者</b><small>市場總覽</small></a>
+   <a class="card" href="手機版_研究者/index.html"><b>研究者</b><small>從問題開始分析</small></a>
+   <h2>電腦版</h2>
+   <a class="card" href="電腦版_政策者/index.html"><b>政策者</b><small>市場脈動儀表板</small></a>
+   <a class="card" href="電腦版_研究者/index.html"><b>研究者</b><small>研究工作台</small></a>
+  </nav>
+ </aside>
+</div>
+<noscript><p style="margin:0;padding:12px 20px;background:#fff">新聞與行情區需要開啟瀏覽器的 JavaScript 才會顯示；右邊的版本連結不受影響。</p></noscript>
+
+<!-- 示範資料與計算（與六個版本用的是同一份，所以數字會對得上；不會讀取任何外部資料） -->
+<script>
+__DATA__
+</script>
+<script>
+(function () {
+  'use strict';
+  var NEWS = __NEWS__;
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* ---------- 分頁（ARIA tabs：左右鍵、Home、End 可切換） ---------- */
+  var tabs = [$('t-news'), $('t-quote'), $('t-stat')], panels = [$('p-news'), $('p-quote'), $('p-stat')];
+  function show(i, focus) {
+    tabs.forEach(function (t, j) { var on = j === i; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; panels[j].hidden = !on; });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(i, false); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key, n = tabs.length, to = k === 'ArrowRight' ? (i + 1) % n : k === 'ArrowLeft' ? (i + n - 1) % n : k === 'Home' ? 0 : k === 'End' ? n - 1 : -1;
+      if (to >= 0) { e.preventDefault(); show(to, true); }
+    });
+  });
+
+  /* ---------- 上中下價 ---------- */
+  var sel = $('mk');
+  sel.innerHTML = MARKETS.map(function (m) { return '<option value="' + m.id + '">' + esc(m.name) + '</option>'; }).join('');
+  function renderQuote() {
+    var m = MK[sel.value], closed = m.id === 'tc';              // 台中市＝示範用「今日休市」，與六個版本的預設一致
+    var dn = closed ? TODAY_DN - 1 : TODAY_DN, rows = [];
+    CROPS.forEach(function (c) {
+      var vq = variantQuotes(c, m, dn);
+      if (vq.length) vq.forEach(function (x, i) { rows.push({ c: c, n: vq.length, i: i, k: x.v.short, hi: x.hi, mid: x.mid, lo: x.lo }); });
+      else { var q = quote(c, m, dn); rows.push({ c: c, n: 1, i: 0, k: '—', hi: q.hi, mid: q.mid, lo: q.lo }); }
+    });
+    $('qbody').innerHTML = rows.map(function (r) {
+      return '<tr>' + (r.i === 0 ? '<th scope="row" rowspan="' + r.n + '">' + esc(r.c.name) + '</th>' : '') + '<td class="l">' + esc(r.k) + '</td><td class="k">' + r.hi.toFixed(1) + '</td><td class="k">' + r.mid.toFixed(1) + '</td><td class="k">' + r.lo.toFixed(1) + '</td></tr>';
+    }).join('');
+    $('qdate').textContent = '交易日 ' + fmtRoc(dateOf(dn)) + '（民國年／月／日）';
+    var n = $('qnote'); n.hidden = !closed; n.textContent = closed ? '台中市今日休市（示範），下面是前一個交易日的行情。' : '';
+  }
+  sel.addEventListener('change', renderQuote);
+
+  /* ---------- 整體統計 ---------- */
+  function renderStat() {
+    var dn = TODAY_DN, pd = TODAY_DN - 1;
+    function vol(g, d) { return g.crops.reduce(function (s, id) { return s + totalVol(CROP[id], d); }, 0) / 1000; }   // 公噸
+    function avg(g, d) { var tv = 0, s = 0; g.crops.forEach(function (id) { var c = CROP[id]; MARKETS.forEach(function (m) { var v = volDay(c, m, d); tv += v; s += avgPrice(c, m, d) * v; }); }); return s / tv; }
+    var G = GROUPS.map(function (g) { return { g: g, v: vol(g, dn), pv: vol(g, pd), a: avg(g, dn), pa: avg(g, pd) }; });
+    function chg(a, b) { var r = a / b - 1, up = r >= 0; return '<span class="sub ' + (up ? 'up' : 'down') + '">' + (up ? '▲ ' : '▼ ') + Math.abs(r * 100).toFixed(1) + '%<span class="lbl">（較昨日）</span></span>'; }
+    function row(label, cells) { return '<tr><th scope="row">' + label + '</th>' + cells.join('') + '</tr>'; }
+    $('sbody').innerHTML = [
+      row('交易量', G.map(function (x) { return '<td class="k">' + fi(x.v) + chg(x.v, x.pv) + '</td>'; })),
+      row('昨日交易量', G.map(function (x) { return '<td>' + fi(x.pv) + '</td>'; })),
+      row('平均價', G.map(function (x) { return '<td class="k">' + x.a.toFixed(2) + chg(x.a, x.pa) + '</td>'; })),
+      row('昨日平均價', G.map(function (x) { return '<td>' + x.pa.toFixed(2) + '</td>'; }))
+    ].join('');
+    $('sdate').textContent = '統計日 ' + fmtRoc(dateOf(dn));
+    var tv = G.reduce(function (s, x) { return s + x.v; }, 0), tp = G.reduce(function (s, x) { return s + x.pv; }, 0), tr = tv / tp - 1;
+    function best(f, hi) { return G.slice().sort(function (a, b) { return hi ? f(b) - f(a) : f(a) - f(b); })[0]; }
+    var v1 = best(function (x) { return x.v / x.pv; }, true), v2 = best(function (x) { return x.v / x.pv; }, false);
+    var p1 = best(function (x) { return x.a / x.pa; }, true), p2 = best(function (x) { return x.a / x.pa; }, false);
+    function pc(x, k) { var r = x[k] / x['p' + k] - 1; return (r >= 0 ? '增加 ' : '減少 ') + Math.abs(r * 100).toFixed(1) + '%'; }
+    $('ssum').innerHTML = '<b>今日摘要（自動產生）</b>' +
+      '<p>全部示範市場合計，今日交易量約 ' + fi(tv) + ' 公噸，較昨日' + (tr >= 0 ? '增加 ' : '減少 ') + Math.abs(tr * 100).toFixed(1) + '%。</p>' +
+      '<p>交易量方面，「' + esc(v1.g.name) + '」較昨日變動最偏多（' + pc(v1, 'v') + '），「' + esc(v2.g.name) + '」最偏少（' + pc(v2, 'v') + '）。</p>' +
+      '<p>平均價方面，「' + esc(p1.g.name) + '」較昨日變動最偏多（' + pc(p1, 'a') + '），「' + esc(p2.g.name) + '」最偏少（' + pc(p2, 'a') + '）。</p>' +
+      '<p class="sub">提醒：這是批發市場的成交量，不等於產量；各品類只含 6 項示範作物。</p>';
+  }
+  renderQuote(); renderStat();
+
+  /* ---------- 新聞（自動往上捲動；可暫停；可依主題篩選） ---------- */
+  var box = $('ticker'), ul = $('news'), btn = $('tkbtn'), newsPanel = $('p-news'), topic = $('ntopic'), cnt = $('ncount');
+  function when(off) { var d = new Date(); d.setDate(d.getDate() - off); return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日'; }
+  var ALL = NEWS.slice().sort(function (a, b) { return a.off - b.off; });
+  var ORDER = ['行情', '研究', '技術', '活動', '政策', '防災', '消費'], counts = {};
+  ALL.forEach(function (n) { counts[n.type] = (counts[n.type] || 0) + 1; });
+  var TYPES = ORDER.filter(function (t) { return counts[t]; }).concat(Object.keys(counts).filter(function (t) { return ORDER.indexOf(t) < 0; }));
+  topic.innerHTML = '<option value="">全部主題（' + ALL.length + '）</option>' + TYPES.map(function (t) { return '<option value="' + esc(t) + '">' + esc(t) + '（' + counts[t] + '）</option>'; }).join('');
+  var dup = null, scrolling = false, userPaused = false, hover = false, focus = false, touch = false, acc = 0, last = 0, SPEED = 28, touchTimer = 0;
+  function loopH() { return ul.offsetHeight; }
+  function renderNews() {
+    var t = topic.value, list = t ? ALL.filter(function (n) { return n.type === t; }) : ALL;
+    ul.innerHTML = list.map(function (n) {
+      return '<li><div class="meta"><span class="ty">' + esc(n.type) + '</span><span>' + esc(n.u) + '</span><span aria-hidden="true">·</span><span>' + when(n.off) + '</span></div><h3>' + esc(n.t) + '</h3><p>' + esc(n.s) + '</p></li>';
+    }).join('');
+    cnt.textContent = '最新農業新聞・' + (t ? t + '主題 ' : '') + '共 ' + list.length + ' 則';
+    if (dup) { box.removeChild(dup); dup = null; }
+    box.scrollTop = 0; acc = 0; scrolling = false;
+    box.className = box.className.replace(' manual', '');
+    if (reduce) { box.className += ' manual'; btn.hidden = true; return; }                                  // 使用者要求減少動態：不自動捲動
+    if (ul.offsetHeight <= box.clientHeight + 8) { btn.hidden = true; box.className += ' manual'; return; } // 內容比框短，不需要捲動
+    btn.hidden = false;
+    dup = ul.cloneNode(true); dup.removeAttribute('id'); dup.setAttribute('aria-hidden', 'true'); box.appendChild(dup);   // 接一份同樣的內容讓首尾相連（輔助科技略過）
+    scrolling = true;
+  }
+  function step(ts) {
+    if (!last) last = ts;
+    var dt = Math.min(ts - last, 100) / 1000; last = ts;
+    if (scrolling && !newsPanel.hidden && !(userPaused || hover || focus || touch)) {
+      acc += SPEED * dt; var whole = Math.floor(acc);
+      if (whole >= 1) { acc -= whole; box.scrollTop += whole; if (box.scrollTop >= loopH()) box.scrollTop -= loopH(); }
+    }
+    requestAnimationFrame(step);
+  }
+  box.addEventListener('scroll', function () { if (scrolling && loopH() && box.scrollTop >= loopH()) box.scrollTop -= loopH(); });
+  box.addEventListener('mouseenter', function () { hover = true; });
+  box.addEventListener('mouseleave', function () { hover = false; });
+  box.addEventListener('focusin', function () { focus = true; });
+  box.addEventListener('focusout', function () { focus = false; });
+  box.addEventListener('touchstart', function () { touch = true; clearTimeout(touchTimer); }, { passive: true });
+  box.addEventListener('touchend', function () { clearTimeout(touchTimer); touchTimer = setTimeout(function () { touch = false; }, 4000); }, { passive: true });
+  btn.addEventListener('click', function () { userPaused = !userPaused; btn.textContent = userPaused ? '繼續捲動' : '暫停捲動'; });
+  topic.addEventListener('change', renderNews);
+  renderNews();
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
