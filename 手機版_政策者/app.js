@@ -1,6 +1,6 @@
 'use strict';
 /* 農業資訊平台｜手機版_政策者｜由共用原始碼建置，這份是完整獨立的 */
-const APP = {"id": "policy", "dir": "手機版_政策者", "view": "phone", "title": "GRGR 綠綠｜政策者（手機版）", "ver": "1.0", "built": "2026-11-01", "hub": {"home": "../入口.html", "items": [{"dir": "手機版_農友", "name": "農友", "view": "phone", "href": "../手機版_農友/index.html"}, {"dir": "手機版_消費者", "name": "消費者", "view": "phone", "href": "../手機版_消費者/index.html"}, {"dir": "手機版_政策者", "name": "政策者", "view": "phone", "href": "../手機版_政策者/index.html"}, {"dir": "手機版_研究者", "name": "研究者", "view": "phone", "href": "../手機版_研究者/index.html"}, {"dir": "電腦版_政策者", "name": "政策者", "view": "desk", "href": "../電腦版_政策者/index.html"}, {"dir": "電腦版_研究者", "name": "研究者", "view": "desk", "href": "../電腦版_研究者/index.html"}]}};
+const APP = {"id": "policy", "dir": "手機版_政策者", "view": "phone", "title": "GRGR 綠綠｜政策者（手機版）", "ver": "1.0", "built": "2026-11-01", "hub": {"home": "../GRGR.html", "items": [{"dir": "手機版_農友", "name": "農友", "view": "phone", "href": "../手機版_農友/index.html"}, {"dir": "手機版_消費者", "name": "消費者", "view": "phone", "href": "../手機版_消費者/index.html"}, {"dir": "手機版_政策者", "name": "政策者", "view": "phone", "href": "../手機版_政策者/index.html"}, {"dir": "手機版_研究者", "name": "研究者", "view": "phone", "href": "../手機版_研究者/index.html"}, {"dir": "電腦版_政策者", "name": "政策者", "view": "desk", "href": "../電腦版_政策者/index.html"}, {"dir": "電腦版_研究者", "name": "研究者", "view": "desk", "href": "../電腦版_研究者/index.html"}]}};
 
 /* ===================== data.js ===================== */
 /* =====================================================================
